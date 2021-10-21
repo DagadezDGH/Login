@@ -17,6 +17,7 @@ public class Main {
 		System.out.println("David Carradine : " + ldap.login("dcarradine", "karate"));
 		System.out.println("Michael Knight  : " + ldap.login("mknight", "kit"));
 		
+		MVC.main(args);
 	}
 
 }
