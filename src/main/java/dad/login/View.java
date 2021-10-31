@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 
-public class View {
+public class View extends GridPane{
 
 	private Label userLabel = new Label("Usuario: ");
 	private Label passwdLabel = new Label("Contraseña: ");
@@ -22,35 +22,49 @@ public class View {
 	private PasswordField passwdText = new PasswordField();
 	private Button accessButton = new Button("Acceder");
 	private Button cancelButton = new Button("Cancelar");
-	private GridPane root = new GridPane();
+//	private GridPane root = new GridPane();
 	private HBox buttonsBox = new HBox();
 	private CheckBox ldap = new CheckBox("Usar LDAP")	;
 
 	public View() {
 
 		userText.setPromptText("Usuario");
+		userLabel.setAlignment(Pos.BASELINE_LEFT);
 		passwdText.setPromptText("Contraseña");
+		passwdLabel.setAlignment(Pos.BASELINE_LEFT);
 		buttonsBox.setAlignment(Pos.CENTER);
 		buttonsBox.getChildren().addAll(accessButton, cancelButton);
 		buttonsBox.setSpacing(10);
-
+		
 		ldap.setAlignment(Pos.CENTER);
 
-		root.addRow(0, userLabel, userText);
-		root.addRow(1, passwdLabel, passwdText);
-		root.addRow(2, ldap);
-		root.addRow(3 ,buttonsBox);
+		addRow(0, userLabel, userText);
+		addRow(1, passwdLabel, passwdText);
+		addRow(2, ldap);
+		addRow(3 ,buttonsBox);
 
-		root.setPadding(new Insets(5));
-		root.setHgap(15);
-		root.setVgap(15);
-		root.setGridLinesVisible(false);
-		root.setAlignment(Pos.CENTER);
+		setPadding(new Insets(5));
+		setHgap(15);
+		setVgap(15);
+		setGridLinesVisible(false);
+		setAlignment(Pos.CENTER);
+
+		RowConstraints [] rows = {
+				new RowConstraints(),new RowConstraints(), new RowConstraints(), new RowConstraints()
+		};
 
 
 		ColumnConstraints[] cols = { new ColumnConstraints(), new ColumnConstraints() };
-		root.getColumnConstraints().setAll(cols);
+		getColumnConstraints().setAll(cols);
+		
+		cols[0].setHalignment(HPos.CENTER);
+		cols[0].setFillWidth(false);
+		
+		setColumnSpan(ldap, REMAINING);
+		setColumnSpan(buttonsBox, REMAINING);
+		setAlignment(Pos.CENTER);
 
+		setAlignment(Pos.CENTER);
 
 	}
 	
@@ -58,23 +72,23 @@ public class View {
 		return ldap;
 	}
 
-	public String getUser() {
+	public TextField getUser() {
 
-		return userText.getText();
+		return userText;
 	}
 
-	public String getPassword() {
+	public PasswordField getPassword() {
 
-		return passwdText.getText();
+		return passwdText;
 	}
 
 	public Button getAccessButton() {
 		return accessButton;
 	}
 
-	public GridPane getRoot() {
-		return root;
-	}
+//	public GridPane getRoot() {
+//		return root;
+//	}
 
 	public Button getCancelButton() {
 		return cancelButton;

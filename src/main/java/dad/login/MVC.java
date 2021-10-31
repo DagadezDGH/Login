@@ -9,7 +9,7 @@ public class MVC extends Application {
 	
 	public void start(Stage primaryStage) {
 		Controller controller = new Controller();
-		Scene scene = new Scene(controller.getView().getRoot(), 420, 250);
+		Scene scene = new Scene(controller.getView(), 420, 250);
 		primaryStage.setTitle("Iniciar sesión");
 		primaryStage.setScene(scene);
 		primaryStage.show();
